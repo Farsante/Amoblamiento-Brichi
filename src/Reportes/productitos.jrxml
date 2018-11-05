@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="productitos" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9929e513-865f-4de7-802b-ecb85e9b54eb">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="tipo_material" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     producto.`idProducto` AS producto_idProducto,
+     producto.`descripcion` AS producto_descripcion,
+     producto.`codigo` AS producto_codigo,
+     producto.`stock_actual` AS producto_stock_actual,
+     producto.`stock_minimo` AS producto_stock_minimo,
+     producto.`stock_maximo` AS producto_stock_maximo,
+     producto.`punto_pedido` AS producto_punto_pedido,
+     producto.`tipo` AS producto_tipo
+FROM
+     `producto` producto
+
+WHERE
+     producto.`stock_actual` = producto.`punto_pedido`
+ AND producto.`tipo` = $P{tipo_material}]]>
+	</queryString>
+	<field name="producto_idProducto" class="java.lang.Integer"/>
+	<field name="producto_descripcion" class="java.lang.String"/>
+	<field name="producto_codigo" class="java.lang.String"/>
+	<field name="producto_stock_actual" class="java.lang.Integer"/>
+	<field name="producto_stock_minimo" class="java.lang.Integer"/>
+	<field name="producto_stock_maximo" class="java.lang.Integer"/>
+	<field name="producto_punto_pedido" class="java.lang.Integer"/>
+	<field name="producto_tipo" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="132" splitType="Stretch">
+			<image>
+				<reportElement x="600" y="12" width="171" height="109" uuid="150fe614-d79c-4f9d-97ff-a9578f7a73b5"/>
+				<imageExpression><![CDATA["C:\\Users\\HP\\Desktop\\Proyectos\\Amoblamientos Brichi\\src\\Reportes\\Icono.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="0" y="83" width="187" height="38" forecolor="#FF9900" uuid="65ff42cc-1878-4e87-8265-d3334ac5b036"/>
+				<textElement>
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Materiales Criticos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="10" width="299" height="37" forecolor="#339900" uuid="f0a104d4-68ed-435e-8924-efefab4efe85"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Amoblamientos Brichi]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="112" splitType="Stretch">
+			<staticText>
+				<reportElement x="10" y="10" width="221" height="20" uuid="61995d52-92c2-446f-82d9-04d1ebcb8c71"/>
+				<textElement>
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Telefono:         0381 3079064]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="30" width="221" height="20" uuid="0cc0bdac-e94f-43d1-b09c-1f4b5679943f"/>
+				<textElement>
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Celular:             0381 6860026]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="50" width="231" height="20" uuid="7393cf6b-40d2-433a-8ee9-668f36ab939f"/>
+				<textElement>
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Email:           info@brichi.com.ar]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="90" width="428" height="20" uuid="72baa3bb-b8aa-4810-8968-1e1ce7028494"/>
+				<textElement>
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Direccion:      Sargento Cabral 281-San Miguel de Tucumán]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="70" width="231" height="20" uuid="5af16524-ae96-4409-8937-3d87da26fd0b"/>
+				<textElement>
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Web:              www.brichi.com.ar]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="46" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="0" y="11" width="802" height="29" uuid="3c6f9517-9ed7-4869-b276-01623fb6cb68"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="11" y="20" width="100" height="20" forecolor="#009933" uuid="7d432596-2bd2-4c49-b0e9-c7fe6daf7440"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descripcion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="111" y="20" width="100" height="20" forecolor="#009933" uuid="28350ab8-0532-4b9e-bf6f-97918cb6e311"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Codigo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="211" y="20" width="100" height="20" forecolor="#009933" uuid="03109b66-e244-4c09-b1ed-2a22fc744577"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Stock Actual]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="311" y="20" width="100" height="20" forecolor="#009933" uuid="da945fa2-0b81-4654-ab37-c1576de0b1e1"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Stock Minimo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="411" y="20" width="100" height="20" forecolor="#009933" uuid="696532a5-23f1-436f-9cbb-2848738ca62c"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Stock Maximo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="511" y="20" width="112" height="20" forecolor="#009933" uuid="e172a4a1-3a80-4900-a7c2-0bd6594fd9dc"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Punto de Pedido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="623" y="20" width="124" height="20" forecolor="#009933" uuid="ee3b1870-ff0f-4135-b935-a2ad0af86c91"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo de Producto]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="11" y="1" width="100" height="20" uuid="cf5b53da-c98d-49e0-8bcc-14d4daa0d052"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{producto_descripcion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="111" y="0" width="100" height="20" uuid="d5635634-5ebe-4a2e-9dd1-aa3f3c27e748"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{producto_codigo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="211" y="1" width="100" height="20" uuid="1c1a22ce-1870-4514-932c-77f9f3496428"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{producto_stock_actual}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="311" y="1" width="100" height="20" uuid="34cd9f28-1d86-4456-b9c9-77825899d301"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{producto_stock_minimo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="411" y="1" width="100" height="20" uuid="703096ef-1be2-43b4-b727-2283709cc718"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{producto_stock_maximo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="511" y="1" width="112" height="20" uuid="4e83d95e-6d7b-415d-bb2c-72590437b3a7"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{producto_punto_pedido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="623" y="0" width="124" height="20" uuid="1d08deb9-61f6-4bce-a4bc-afe09ee04ef6"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{producto_tipo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="38" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="clientitos" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b95a1a65-2f34-49fb-8f26-a933f24eb808">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="estado_clientito" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     persona.`idPersona` AS persona_idPersona,
+     persona.`nombre` AS persona_nombre,
+     persona.`apellido` AS persona_apellido,
+     persona.`sexo` AS persona_sexo,
+     persona.`fecha_nacimiento` AS persona_fecha_nacimiento,
+     persona.`dni` AS persona_dni,
+     domicilio.`idDomicilio` AS domicilio_idDomicilio,
+     domicilio.`direccion` AS domicilio_direccion,
+     domicilio.`localidad` AS domicilio_localidad,
+     domicilio.`provincia` AS domicilio_provincia,
+     domicilio.`idPersona` AS domicilio_idPersona,
+     domicilio.`idProveedor` AS domicilio_idProveedor,
+     telefono.`idTelefono` AS telefono_idTelefono,
+     telefono.`numero` AS telefono_numero,
+     telefono.`movil` AS telefono_movil,
+     telefono.`idPersona` AS telefono_idPersona,
+     telefono.`idProveedor` AS telefono_idProveedor,
+     correo_electronico.`idCorreo_Electronico` AS correo_electronico_idCorreo_Electronico,
+     correo_electronico.`direccion_correo` AS correo_electronico_direccion_correo,
+     correo_electronico.`idPersona` AS correo_electronico_idPersona,
+     correo_electronico.`idProveedor` AS correo_electronico_idProveedor,
+     cliente.`idCliente` AS cliente_idCliente,
+     cliente.`idPersona` AS cliente_idPersona,
+     cliente.`estado_cliente` AS cliente_estado_cliente
+FROM
+     `persona` persona INNER JOIN `domicilio` domicilio ON persona.`idPersona` = domicilio.`idPersona`
+     INNER JOIN `telefono` telefono ON persona.`idPersona` = telefono.`idPersona`
+     INNER JOIN `correo_electronico` correo_electronico ON persona.`idPersona` = correo_electronico.`idPersona`
+     INNER JOIN `cliente` cliente ON persona.`idPersona` = cliente.`idPersona`
+WHERE
+     cliente.`estado_cliente` = $P{estado_clientito}]]>
+	</queryString>
+	<field name="persona_idPersona" class="java.lang.Integer"/>
+	<field name="persona_nombre" class="java.lang.String"/>
+	<field name="persona_apellido" class="java.lang.String"/>
+	<field name="persona_sexo" class="java.lang.String"/>
+	<field name="persona_fecha_nacimiento" class="java.sql.Date"/>
+	<field name="persona_dni" class="java.lang.String"/>
+	<field name="domicilio_idDomicilio" class="java.lang.Integer"/>
+	<field name="domicilio_direccion" class="java.lang.String"/>
+	<field name="domicilio_localidad" class="java.lang.String"/>
+	<field name="domicilio_provincia" class="java.lang.String"/>
+	<field name="domicilio_idPersona" class="java.lang.Integer"/>
+	<field name="domicilio_idProveedor" class="java.lang.Integer"/>
+	<field name="telefono_idTelefono" class="java.lang.Integer"/>
+	<field name="telefono_numero" class="java.lang.Integer"/>
+	<field name="telefono_movil" class="java.lang.String"/>
+	<field name="telefono_idPersona" class="java.lang.Integer"/>
+	<field name="telefono_idProveedor" class="java.lang.Integer"/>
+	<field name="correo_electronico_idCorreo_Electronico" class="java.lang.Integer"/>
+	<field name="correo_electronico_direccion_correo" class="java.lang.String"/>
+	<field name="correo_electronico_idPersona" class="java.lang.Integer"/>
+	<field name="correo_electronico_idProveedor" class="java.lang.Integer"/>
+	<field name="cliente_idCliente" class="java.lang.Integer"/>
+	<field name="cliente_idPersona" class="java.lang.Integer"/>
+	<field name="cliente_estado_cliente" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="139" splitType="Stretch">
+			<staticText>
+				<reportElement x="-16" y="-153" width="323" height="45" forecolor="#66FF66" uuid="d508290f-fd5c-41c6-a11e-635e05dcf9f4"/>
+				<textElement>
+					<font size="30" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Amoblamientos Brichi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="101" width="174" height="38" forecolor="#FF9900" uuid="e1976b82-aa74-4d67-9ca7-7f74b3be934e"/>
+				<textElement>
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Clientes morosos]]></text>
+			</staticText>
+			<image>
+				<reportElement x="550" y="23" width="156" height="109" uuid="92d6a27a-2b97-4f9a-b615-cc47ff04dbda"/>
+				<imageExpression><![CDATA["C:\\Users\\HP\\Desktop\\Proyectos\\Amoblamientos Brichi\\src\\Reportes\\Icono.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="0" y="23" width="299" height="37" forecolor="#339900" uuid="214d8d43-df06-4b89-8ea3-a423b904d9a5"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Amoblamientos Brichi]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="115" splitType="Stretch">
+			<staticText>
+				<reportElement x="11" y="90" width="428" height="20" uuid="77653077-f011-4de1-b989-de42ffa4f8fa"/>
+				<textElement>
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Direccion:      Sargento Cabral 281-San Miguel de Tucumán]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="70" width="231" height="20" uuid="e6089cae-dad4-463a-982d-c9a8caf522f3"/>
+				<textElement>
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Web:              www.brichi.com.ar]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="10" width="256" height="20" uuid="347e82a2-d2b0-4571-8577-e2cd1c779fc8"/>
+				<textElement>
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Telefono:         0381 3079064]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="30" width="256" height="20" uuid="f34b9cfc-a738-425f-815a-99fb8ab8a85b"/>
+				<textElement>
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Celular:             0381 6860026]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="50" width="231" height="20" uuid="7cfc0e38-56b5-4cad-8612-7713b955fbbf"/>
+				<textElement>
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Email:           info@brichi.com.ar]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="52" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="0" y="12" width="802" height="29" uuid="c67113f7-904a-4c1c-9390-386dbc514d46"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="10" y="21" width="52" height="20" uuid="c1ca3d2d-5026-4268-a7c8-47a156f90597"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="62" y="21" width="60" height="20" uuid="a9bb2ace-7e27-460a-8c7e-6e7bb0552849"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Apellido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="122" y="21" width="36" height="20" uuid="bc2d1abd-9947-445b-897a-66ac08d81fd1"/>
+				<textElement>
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sexo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="158" y="21" width="73" height="20" uuid="948c86ec-fe93-4bff-8dc6-61147a322a7f"/>
+				<textElement>
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha Nac.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="231" y="21" width="58" height="20" uuid="4948f107-7cd2-45cc-b084-b75b583fd3e3"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DNI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="289" y="21" width="79" height="20" uuid="2a34696e-420b-4b13-8c73-d6f8a1183d65"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Domicilio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="368" y="21" width="87" height="20" uuid="7a25ea61-4bfb-49eb-9b93-4dc3bd5567b8"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Localidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="455" y="21" width="80" height="20" uuid="6fefe2ae-d700-4677-aa02-7138f56a4e20"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Provincia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="535" y="21" width="61" height="20" uuid="13196d36-3c53-4ec1-ada2-61c9e985abc9"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Numero]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="596" y="21" width="60" height="20" uuid="c3f3a987-d332-4d4d-a4cb-1b23209f4876"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Movil]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="656" y="21" width="71" height="20" uuid="f56216c6-4591-441d-b457-44071f4b925b"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Correo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="727" y="21" width="64" height="20" uuid="d7e73fd7-888b-4602-ab71-b07706d4c39b"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Estado ]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="32" splitType="Stretch">
+			<textField>
+				<reportElement x="10" y="0" width="52" height="20" uuid="7eef3c07-533b-4d15-a356-f0ab2adbda1b"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{persona_nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="62" y="0" width="60" height="20" uuid="be4a2d15-ba22-4c4b-aae3-4050441b5dff"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{persona_apellido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="122" y="0" width="36" height="20" uuid="9b840baf-38e3-43b8-bf05-55f73b08508c"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{persona_sexo}]]></textFieldExpression>
+			</textField>
+			<textField pattern="yyyy/MM/dd">
+				<reportElement x="158" y="0" width="73" height="20" uuid="60353a9f-0446-4589-b39b-d22b354d3471"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{persona_fecha_nacimiento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="231" y="0" width="58" height="20" uuid="cd4f7413-7f18-4e08-bcfb-34d709eda0c0"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{persona_dni}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="289" y="0" width="79" height="20" uuid="2de8f605-859f-4be9-8737-24b3f6ca4dac"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{domicilio_direccion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="368" y="0" width="87" height="20" uuid="d8175b48-dc05-4abe-84a5-afd97960fb02"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{domicilio_localidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="0" width="80" height="20" uuid="04dea952-258d-463c-8b6c-ba529ba79342"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{domicilio_provincia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="534" y="0" width="61" height="20" uuid="b98aaea1-119d-4a37-bc49-272a048b0bba"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telefono_numero}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="595" y="0" width="60" height="20" uuid="56cd6df2-c31e-4f2b-b9b9-86ee4962f5ab"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telefono_movil}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="655" y="0" width="72" height="20" uuid="6920e157-0d34-489e-8956-e9b427a974f6"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{correo_electronico_direccion_correo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="727" y="0" width="64" height="20" uuid="ebe9ac0f-a15e-4f65-83a9-009a17d48ce6"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cliente_estado_cliente}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

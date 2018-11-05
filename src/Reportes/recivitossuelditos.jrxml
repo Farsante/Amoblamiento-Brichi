@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="recivitossuelditos" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6089a583-7912-4076-8084-50c8401a33d8">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="id_liquidacion" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     liquidacion_sueldo.`idLiquidacion_sueldo` AS liquidacion_sueldo_idLiquidacion_sueldo,
+     liquidacion_sueldo.`periodo_liquidacion` AS liquidacion_sueldo_periodo_liquidacion,
+     liquidacion_sueldo.`motivo` AS liquidacion_sueldo_motivo,
+     liquidacion_sueldo.`fecha_liquidacion` AS liquidacion_sueldo_fecha_liquidacion,
+     liquidacion_sueldo.`total_haberes_no_remunerativos` AS liquidacion_sueldo_total_haberes_no_remunerativos,
+     liquidacion_sueldo.`total_bruto` AS liquidacion_sueldo_total_bruto,
+     liquidacion_sueldo.`total_retenciones` AS liquidacion_sueldo_total_retenciones,
+     liquidacion_sueldo.`tipo_liquidacion` AS liquidacion_sueldo_tipo_liquidacion,
+     liquidacion_sueldo.`idEmpleado` AS liquidacion_sueldo_idEmpleado,
+     persona.`idPersona` AS persona_idPersona,
+     persona.`nombre` AS persona_nombre,
+     persona.`apellido` AS persona_apellido,
+     persona.`dni` AS persona_dni,
+     empleado.`idEmpleado` AS empleado_idEmpleado,
+     empleado.`cuil` AS empleado_cuil,
+     empleado.`obra_social` AS empleado_obra_social,
+     empleado.`idPersona` AS empleado_idPersona,
+     empleado.`idTurno` AS empleado_idTurno,
+     empleado.`idCategoria` AS empleado_idCategoria,
+     categoria.`idCategoria` AS categoria_idCategoria,
+     categoria.`tipo_categoria` AS categoria_tipo_categoria,
+     categoria.`sueldo` AS categoria_sueldo,
+     detalle_liquidacion.`idDetalle_liquidacion` AS detalle_liquidacion_idDetalle_liquidacion,
+     detalle_liquidacion.`numero_recibo_sueldo` AS detalle_liquidacion_numero_recibo_sueldo,
+     detalle_liquidacion.`total_neto` AS detalle_liquidacion_total_neto,
+     detalle_liquidacion.`idLiquidacion_sueldo` AS detalle_liquidacion_idLiquidacion_sueldo,
+     detalle_liquidacion.`idConcepto_sueldo` AS detalle_liquidacion_idConcepto_sueldo,
+     concepto_sueldo.`idConcepto_sueldo` AS concepto_sueldo_idConcepto_sueldo,
+     concepto_sueldo.`descripcion` AS concepto_sueldo_descripcion,
+     concepto_sueldo.`importe` AS concepto_sueldo_importe,
+     concepto_sueldo.`porcentaje` AS concepto_sueldo_porcentaje,
+     liquidacion_sueldo.`total_haberes_remunerativos` AS liquidacion_sueldo_total_haberes_remunerativos,
+     empleado.`legajo` AS empleado_legajo
+FROM
+     `persona` persona INNER JOIN `empleado` empleado ON persona.`idPersona` = empleado.`idPersona`
+     INNER JOIN `liquidacion_sueldo` liquidacion_sueldo ON empleado.`idEmpleado` = liquidacion_sueldo.`idEmpleado`
+     INNER JOIN `categoria` categoria ON empleado.`idCategoria` = categoria.`idCategoria`
+     INNER JOIN `detalle_liquidacion` detalle_liquidacion ON liquidacion_sueldo.`idLiquidacion_sueldo` = detalle_liquidacion.`idLiquidacion_sueldo`
+     INNER JOIN `concepto_sueldo` concepto_sueldo ON detalle_liquidacion.`idConcepto_sueldo` = concepto_sueldo.`idConcepto_sueldo`
+WHERE
+     liquidacion_sueldo.`idLiquidacion_sueldo` = $P{id_liquidacion}]]>
+	</queryString>
+	<field name="liquidacion_sueldo_idLiquidacion_sueldo" class="java.lang.Integer"/>
+	<field name="liquidacion_sueldo_periodo_liquidacion" class="java.lang.String"/>
+	<field name="liquidacion_sueldo_motivo" class="java.lang.String"/>
+	<field name="liquidacion_sueldo_fecha_liquidacion" class="java.sql.Date"/>
+	<field name="liquidacion_sueldo_total_haberes_no_remunerativos" class="java.lang.Double"/>
+	<field name="liquidacion_sueldo_total_bruto" class="java.lang.Double"/>
+	<field name="liquidacion_sueldo_total_retenciones" class="java.lang.Double"/>
+	<field name="liquidacion_sueldo_tipo_liquidacion" class="java.lang.String"/>
+	<field name="liquidacion_sueldo_idEmpleado" class="java.lang.Integer"/>
+	<field name="persona_idPersona" class="java.lang.Integer"/>
+	<field name="persona_nombre" class="java.lang.String"/>
+	<field name="persona_apellido" class="java.lang.String"/>
+	<field name="persona_dni" class="java.lang.String"/>
+	<field name="empleado_idEmpleado" class="java.lang.Integer"/>
+	<field name="empleado_cuil" class="java.lang.String"/>
+	<field name="empleado_obra_social" class="java.lang.String"/>
+	<field name="empleado_idPersona" class="java.lang.Integer"/>
+	<field name="empleado_idTurno" class="java.lang.Integer"/>
+	<field name="empleado_idCategoria" class="java.lang.Integer"/>
+	<field name="categoria_idCategoria" class="java.lang.Integer"/>
+	<field name="categoria_tipo_categoria" class="java.lang.String"/>
+	<field name="categoria_sueldo" class="java.lang.Double"/>
+	<field name="detalle_liquidacion_idDetalle_liquidacion" class="java.lang.Integer"/>
+	<field name="detalle_liquidacion_numero_recibo_sueldo" class="java.lang.String"/>
+	<field name="detalle_liquidacion_total_neto" class="java.lang.Double"/>
+	<field name="detalle_liquidacion_idLiquidacion_sueldo" class="java.lang.Integer"/>
+	<field name="detalle_liquidacion_idConcepto_sueldo" class="java.lang.Integer"/>
+	<field name="concepto_sueldo_idConcepto_sueldo" class="java.lang.Integer"/>
+	<field name="concepto_sueldo_descripcion" class="java.lang.String"/>
+	<field name="concepto_sueldo_importe" class="java.lang.Double"/>
+	<field name="concepto_sueldo_porcentaje" class="java.lang.Double"/>
+	<field name="liquidacion_sueldo_total_haberes_remunerativos" class="java.lang.Double"/>
+	<field name="empleado_legajo" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="132" splitType="Stretch">
+			<image>
+				<reportElement x="562" y="13" width="156" height="109" uuid="e5804828-6557-4291-81a8-e3368459a6f5"/>
+				<imageExpression><![CDATA["C:\\Users\\HP\\Desktop\\Proyectos\\Amoblamientos Brichi\\src\\Reportes\\Icono.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="169" y="84" width="353" height="38" forecolor="#FF6600" uuid="d27294ee-aa00-47c8-890b-4b08cdb24299"/>
+				<textElement textAlignment="Center">
+					<font size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Recibo de Sueldo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="23" width="299" height="37" forecolor="#339900" uuid="77a89110-cc9c-4afc-9ba7-7c780aa2c0d6"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Amoblamientos Brichi]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="136" splitType="Stretch">
+			<textField>
+				<reportElement x="100" y="0" width="100" height="20" uuid="9f816eb8-ac66-41e4-b015-dedd7c425c3c"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{detalle_liquidacion_numero_recibo_sueldo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="0caf235c-436f-48b9-8f95-955eb1fe9cdc"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[N° Recibo sueldo:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="20" width="100" height="20" uuid="1f68dab7-6911-4207-b243-b7423670a60f"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{persona_nombre}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="20" width="100" height="20" uuid="d4c3cb7a-8644-4f12-b00e-e6167f4590dc"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="40" width="100" height="20" uuid="4e55c73a-3e74-4a4b-88ef-eccf53abb3eb"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{persona_apellido}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="40" width="100" height="20" uuid="8902a7a3-dc9c-4850-ba86-dac5b5b7e0a3"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Apellido:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="60" width="100" height="20" uuid="ba1a40d6-cb76-494b-bbea-c9a510a1e691"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{categoria_tipo_categoria}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="60" width="100" height="20" uuid="23e83016-6a02-4c16-b439-dd4c760c7168"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Categoria:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="326" y="20" width="100" height="20" uuid="541c9f05-54c3-42cf-806a-a90ee9dee1c6"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empleado_cuil}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="226" y="20" width="100" height="20" uuid="5e6f35c1-6361-46f2-a801-faed0f12c7fd"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cuil:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="326" y="40" width="100" height="20" uuid="d6977fe7-4354-45c0-9bd4-aebd1067d52c"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empleado_legajo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="226" y="40" width="100" height="20" uuid="25acb5ab-6f5c-445b-9400-24f6a6bd783c"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Legajo:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="326" y="60" width="100" height="20" uuid="d3f3d4a7-9f8d-48cc-a1d0-0709a32e1c8f"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empleado_obra_social}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="226" y="60" width="100" height="20" uuid="60b5678e-2a70-4ccf-97a6-51a20d62ac38"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Obra social:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="80" width="100" height="20" uuid="ceacc9b4-b2a3-4a5a-aa81-506d53248579"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{persona_dni}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="80" width="100" height="20" uuid="0b418208-0cce-4589-8a41-4c185bdf111a"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DNI:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="681" y="28" width="100" height="20" uuid="cad5b102-c92c-4dfa-968e-91c687bbb34c"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{liquidacion_sueldo_fecha_liquidacion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="522" y="28" width="159" height="20" uuid="3e4f5898-df6c-4522-b8a2-994c80d28560"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha de liquidacion:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="681" y="48" width="100" height="20" uuid="ae0e446a-9b6d-4e82-abd4-1aa07afb8d83"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{liquidacion_sueldo_periodo_liquidacion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="522" y="48" width="159" height="20" uuid="a39e564e-e75b-486b-b704-5f015b4738e5"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Periodo de liquidacion:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="681" y="68" width="100" height="20" uuid="3ce6d74d-77a5-4a5f-b03b-fcf810fdce73"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{liquidacion_sueldo_motivo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="522" y="68" width="159" height="20" uuid="3c4de6c9-16d4-4257-8ca9-027a6091ff43"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Motivo:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="681" y="108" width="100" height="20" uuid="3ad92779-b4ef-417e-987f-551fb466a017"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{categoria_sueldo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="522" y="108" width="159" height="20" uuid="8e2a9f7b-0f50-4a44-b209-07ffbb0640df"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sueldo basico:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="522" y="88" width="159" height="20" uuid="1daaabb5-e974-42ef-8a48-f611a5dbf8f8"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo de liquidacion:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="681" y="88" width="100" height="20" uuid="ff44a6da-7663-4f4b-8529-b57f0f18311b"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{liquidacion_sueldo_tipo_liquidacion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="38" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="0" y="8" width="802" height="26" uuid="6d56702b-7e35-44db-94de-2e0339d2fd28"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="58" y="14" width="100" height="20" uuid="b5e6f946-47cc-4a78-b779-4a12f2df167d"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Concepto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="266" y="14" width="100" height="20" uuid="42fcf367-accb-4ec9-856c-624df6d1584e"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Importe]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="442" y="14" width="100" height="20" uuid="62f20fea-9d68-4eec-8f37-a40bbcc9a766"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Porcentaje]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="29" y="0" width="156" height="20" uuid="4de72036-67ae-4ad8-b0f8-3aab7375be10"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{concepto_sueldo_descripcion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="266" y="0" width="100" height="20" uuid="0b2894d4-dbe7-4617-952c-8584d3916523"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{concepto_sueldo_importe}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="442" y="0" width="100" height="20" uuid="abbfeea7-4e13-45df-84d9-ada53cb2b8d2"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{concepto_sueldo_porcentaje}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="90" splitType="Stretch">
+			<staticText>
+				<reportElement x="29" y="0" width="237" height="20" uuid="e1ab531c-3847-4615-8d7d-8fb5e7e449ec"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total de haberes remunerativos:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="266" y="0" width="100" height="20" uuid="a0f80377-a8f3-4a82-8924-34c6d78c441b"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{liquidacion_sueldo_total_haberes_remunerativos}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="29" y="20" width="237" height="20" uuid="65507385-1f9a-4be1-a56a-b09660ef23c2"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total de haberes no remunerativos:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="29" y="40" width="237" height="20" uuid="18e3ca0e-5188-4a0b-9de4-1c61c997bde3"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total de retenciones:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="266" y="20" width="100" height="20" uuid="bed03c1f-fba8-4cf6-8e35-74a89e9b1edb"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{liquidacion_sueldo_total_haberes_no_remunerativos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="266" y="40" width="100" height="20" uuid="026634e1-b66d-457e-b3a3-4275a6fd3495"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{liquidacion_sueldo_total_retenciones}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="29" y="60" width="237" height="20" uuid="0a01a2e0-32d4-422f-a711-e4223ad7cc15"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total bruto:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="266" y="60" width="100" height="20" uuid="11fae0c3-1501-4a27-8b60-c747fe2e7268"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{liquidacion_sueldo_total_bruto}]]></textFieldExpression>
+			</textField>
+			<rectangle radius="10">
+				<reportElement x="597" y="56" width="205" height="24" uuid="260f992f-9556-4d05-a4c3-ffc0b09a10c0"/>
+			</rectangle>
+			<textField>
+				<reportElement x="702" y="60" width="100" height="20" forecolor="#FF0000" uuid="eee5dbee-ebdf-4ab9-b7b9-fa82fb536e83"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{detalle_liquidacion_total_neto}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="615" y="60" width="77" height="20" uuid="80bce278-1cdd-4404-b9aa-84c2fb853293"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Neto:]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="15" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="8" splitType="Stretch"/>
+	</summary>
+</jasperReport>

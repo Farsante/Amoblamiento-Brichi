@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="compritas" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="62deff61-6458-433e-baf5-3a05c6b805bb">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="id_compra" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     compra.`idCompra` AS compra_idCompra,
+     compra.`fecha_emision` AS compra_fecha_emision,
+     compra.`hora_emision` AS compra_hora_emision,
+     compra.`numero_compra` AS compra_numero_compra,
+     compra.`total_compra` AS compra_total_compra,
+     compra.`idProveedor` AS compra_idProveedor,
+     linea_compra.`idLinea_Compra` AS linea_compra_idLinea_Compra,
+     linea_compra.`cantidad` AS linea_compra_cantidad,
+     linea_compra.`precio` AS linea_compra_precio,
+     linea_compra.`idProducto` AS linea_compra_idProducto,
+     producto.`idProducto` AS producto_idProducto,
+     producto.`descripcion` AS producto_descripcion,
+     producto.`codigo` AS producto_codigo,
+     proveedor.`idProveedor` AS proveedor_idProveedor,
+     proveedor.`razon_social` AS proveedor_razon_social,
+     linea_compra.`idCompra` AS linea_compra_idCompra,
+     linea_compra.`subtotal` AS linea_compra_subtotal,
+     proveedor.`cuit` AS proveedor_cuit
+FROM
+     `compra` compra INNER JOIN `linea_compra` linea_compra ON compra.`idCompra` = linea_compra.`idCompra`
+     INNER JOIN `producto` producto ON linea_compra.`idProducto` = producto.`idProducto`
+     INNER JOIN `proveedor` proveedor ON compra.`idProveedor` = proveedor.`idProveedor`
+WHERE
+     compra.`idCompra` = $P!{id_compra}]]>
+	</queryString>
+	<field name="compra_idCompra" class="java.lang.Integer"/>
+	<field name="compra_fecha_emision" class="java.sql.Date"/>
+	<field name="compra_hora_emision" class="java.sql.Time"/>
+	<field name="compra_numero_compra" class="java.lang.String"/>
+	<field name="compra_total_compra" class="java.lang.Double"/>
+	<field name="compra_idProveedor" class="java.lang.Integer"/>
+	<field name="linea_compra_idLinea_Compra" class="java.lang.Integer"/>
+	<field name="linea_compra_cantidad" class="java.lang.Integer"/>
+	<field name="linea_compra_precio" class="java.lang.Double"/>
+	<field name="linea_compra_idProducto" class="java.lang.Integer"/>
+	<field name="producto_idProducto" class="java.lang.Integer"/>
+	<field name="producto_descripcion" class="java.lang.String"/>
+	<field name="producto_codigo" class="java.lang.String"/>
+	<field name="proveedor_idProveedor" class="java.lang.Integer"/>
+	<field name="proveedor_razon_social" class="java.lang.String"/>
+	<field name="linea_compra_idCompra" class="java.lang.Integer"/>
+	<field name="linea_compra_subtotal" class="java.lang.Double"/>
+	<field name="proveedor_cuit" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="125" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="84" width="278" height="38" forecolor="#FF0000" uuid="789f92cd-bcb5-429d-8634-6e7526127d21"/>
+				<textElement>
+					<font size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Comprobante de Compra]]></text>
+			</staticText>
+			<image>
+				<reportElement x="562" y="13" width="156" height="109" uuid="a6f6cae9-45bc-4c04-ab2d-02fb84903856"/>
+				<imageExpression><![CDATA["C:\\Users\\HP\\Desktop\\Proyectos\\Amoblamientos Brichi\\src\\Reportes\\Icono.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="0" y="23" width="299" height="37" forecolor="#339900" uuid="9441f238-c9bb-49dc-863e-3966c5395fd5"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Amoblamientos Brichi]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="134" splitType="Stretch">
+			<textField>
+				<reportElement x="623" y="20" width="100" height="20" uuid="4ba0a62a-7a6b-41d1-9f83-a06e932e30b2"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{compra_numero_compra}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="485" y="20" width="138" height="20" uuid="23ab6dd7-a2a8-4471-8cd9-b99621595eda"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Número de compra:]]></text>
+			</staticText>
+			<textField pattern="yyyy/MM/dd">
+				<reportElement x="623" y="40" width="100" height="20" uuid="8f9de54f-b704-4652-90ee-85951504e437"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{compra_fecha_emision}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="485" y="40" width="138" height="20" uuid="980a983a-b585-423b-862e-d49e03159ed5"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha de emisión:]]></text>
+			</staticText>
+			<textField pattern="HH.mm">
+				<reportElement x="623" y="60" width="100" height="20" uuid="c9767492-12b3-455b-b352-a21c7f33f6cc"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{compra_hora_emision}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="485" y="60" width="138" height="20" uuid="7387cbac-e84e-49a3-9b44-16184171ffd7"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hora de emisión:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="10" width="221" height="20" uuid="f6e3f293-251c-42eb-bb11-cd6a9bc7e100"/>
+				<textElement>
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Telefono:         0381 3079064]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="30" width="221" height="20" uuid="e62c9d04-4f89-47d4-ae38-9ec835606558"/>
+				<textElement>
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Celular:             0381 6860026]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="70" width="231" height="20" uuid="ed7208ca-d3a6-4aaa-9ba2-9972d62c0132"/>
+				<textElement>
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Web:              www.brichi.com.ar]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="90" width="428" height="20" uuid="3b1abf09-de0b-4cae-84e1-1421eba61cbc"/>
+				<textElement>
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Direccion:      Sargento Cabral 281-San Miguel de Tucumán]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="50" width="231" height="20" uuid="891323df-dec1-4fcc-94c8-abf08dfa1605"/>
+				<textElement>
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Email:           info@brichi.com.ar]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="485" y="90" width="100" height="20" uuid="7bb5357a-afc6-4bd9-90be-b835b769925d"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Proveedor:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="585" y="90" width="100" height="20" uuid="aba0474e-1152-42be-aa54-9cb1e0cf645a"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{proveedor_razon_social}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="585" y="110" width="100" height="20" uuid="17848d1e-83e1-4596-a16f-ae28d7bfdc60"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{proveedor_cuit}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="485" y="110" width="100" height="20" uuid="cd5027bc-a8e8-4857-b4e9-d3a37510c2d4"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cuit:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="54" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="0" y="17" width="802" height="26" uuid="c2152ceb-0cfc-4b67-ba55-c29b73dcfcfd"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="11" y="21" width="100" height="20" forecolor="#FF0000" uuid="122cba6c-3350-4fee-ba50-0ed45a11a980"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Codigo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="131" y="21" width="100" height="20" forecolor="#FF0000" uuid="febecfb9-8297-448f-9161-1e0f282e6ab4"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descripcion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="266" y="23" width="100" height="20" forecolor="#FF0000" uuid="c98f0976-dae7-4dfa-b8bf-a59c4294e0fe"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="408" y="23" width="100" height="20" forecolor="#FF0000" uuid="2ce0efa6-d42e-4e08-83c4-617cd1232c45"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Precio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="562" y="23" width="100" height="20" forecolor="#FF0000" uuid="4db8d873-ea87-4a73-b172-3fd507454468"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Subtotal]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="10" y="0" width="100" height="20" uuid="9ab20a59-8955-4629-8df4-41bc69d991b6"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{producto_codigo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="131" y="0" width="100" height="20" uuid="62bf7a87-8659-4af2-9119-4c792b0c6c7c"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{producto_descripcion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="266" y="0" width="100" height="20" uuid="3a4f9c78-c568-46a9-938a-b9ee2575dd18"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{linea_compra_cantidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="408" y="4" width="100" height="20" uuid="8730ffa5-77b6-4599-b9a9-5bb21023b7ee"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{linea_compra_precio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="559" y="0" width="100" height="20" uuid="b2103d97-39b8-478e-999d-cdbc7e576ed2"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{linea_compra_subtotal}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="49" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="631" y="21" width="171" height="24" uuid="52e5225a-1624-47bc-8c08-b4436a05715c"/>
+			</rectangle>
+			<textField>
+				<reportElement x="707" y="25" width="84" height="20" forecolor="#FF0000" uuid="adc64ca1-665f-4530-ac3e-c7bbb5bee298"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{compra_total_compra}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="659" y="25" width="48" height="20" uuid="f0d3e6db-5df0-4db1-ae48-6caefd9ec449"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total:]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="17" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
